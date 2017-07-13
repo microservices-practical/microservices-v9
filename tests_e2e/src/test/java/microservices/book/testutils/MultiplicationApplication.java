@@ -3,7 +3,11 @@ package microservices.book.testutils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import microservices.book.testutils.beans.*;
+import microservices.book.testutils.beans.AttemptResponse;
+import microservices.book.testutils.beans.User;
+import microservices.book.testutils.beans.LeaderBoardPosition;
+import microservices.book.testutils.beans.Stats;
+import microservices.book.testutils.beans.ScoreResponse;
 import microservices.book.testutils.http.ApplicationHttpUtils;
 
 import java.io.IOException;
