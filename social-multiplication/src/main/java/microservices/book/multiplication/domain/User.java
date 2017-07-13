@@ -31,4 +31,9 @@ public final class User {
     protected User() {
         alias = null;
     }
+
+    public User(final long userId, final String userAlias) {
+        this.id = userId;
+        this.alias = userAlias;
+    }
 }

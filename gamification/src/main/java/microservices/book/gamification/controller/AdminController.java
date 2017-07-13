@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile("test")
 @RestController
 @RequestMapping("/gamification/admin")
-public class AdminController {
+class AdminController {
 
     private final AdminService adminService;
 
-    public AdminController(AdminService adminService) {
+    public AdminController(final AdminService adminService) {
         this.adminService = adminService;
     }
 

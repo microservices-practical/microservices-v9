@@ -13,6 +13,10 @@ zuul:
       path: /results/**
       serviceId: multiplication
       strip-prefix: false
+    users:
+      path: /users/**
+      serviceId: multiplication
+      strip-prefix: false
     leaders:
       path: /leaders/**
       serviceId: gamification

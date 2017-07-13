@@ -1,9 +1,13 @@
 package microservices.book.testutils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import microservices.book.testutils.beans.*;
+import microservices.book.testutils.http.ApplicationHttpUtils;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author moises.macero
@@ -14,6 +18,8 @@ public class MultiplicationApplication {
     private static final String CONTEXT_ATTEMPTS = "/results";
     private static final String CONTEXT_SCORE = "/scores/";
     private static final String CONTEXT_STATS = "/stats";
+    private static final String CONTEXT_USERS = "/users/";
+    private static final String CONTEXT_LEADERBOARD = "/leaders";
     private static final String CONTEXT_DELETE_DATA_GAM = "/gamification/admin/delete-db";
     private static final String CONTEXT_DELETE_DATA_MULT = "/multiplication/admin/delete-db";
 
@@ -58,6 +64,29 @@ public class MultiplicationApplication {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
             return objectMapper.readValue(response, Stats.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public User getUser(long userId) {
+        String response = httpUtils.get(CONTEXT_USERS + userId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            return objectMapper.readValue(response, User.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<LeaderBoardPosition> getLeaderboard() {
+        String response = httpUtils.get(CONTEXT_LEADERBOARD);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, LeaderBoardPosition.class);
+            return objectMapper.readValue(response, javaType);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

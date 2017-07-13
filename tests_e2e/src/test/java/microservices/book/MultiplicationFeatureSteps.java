@@ -3,9 +3,9 @@ package microservices.book;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import microservices.book.testutils.AttemptResponse;
+import microservices.book.testutils.beans.AttemptResponse;
 import microservices.book.testutils.MultiplicationApplication;
-import microservices.book.testutils.Stats;
+import microservices.book.testutils.beans.Stats;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -60,6 +60,7 @@ public class MultiplicationFeatureSteps {
     @Then("^the user gets the ([^\\s]+) badge$")
     public void the_user_gets_the_type_badge(final String badgeType) throws Throwable {
         long userId = lastAttemptResponse.getUser().getId();
+        Thread.currentThread().sleep(200);
         lastStatsResponse = app.getStatsForUser(userId);
         List<String> userBadges = lastStatsResponse.getBadges();
         assertThat(userBadges).contains(badgeType);
@@ -82,5 +83,17 @@ public class MultiplicationFeatureSteps {
         long userId = lastAttemptResponse.getUser().getId();
         int statPoints = app.getStatsForUser(userId).getScore();
         assertThat(points).isEqualTo(statPoints);
+    }
+
+    public AttemptResponse getLastAttemptResponse() {
+        return lastAttemptResponse;
+    }
+
+    public Stats getLastStatsResponse() {
+        return lastStatsResponse;
+    }
+
+    public MultiplicationApplication getApp() {
+        return app;
     }
 }

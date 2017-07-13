@@ -1,4 +1,4 @@
-package microservices.book.testutils;
+package microservices.book.testutils.http;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;

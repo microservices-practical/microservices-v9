@@ -1,4 +1,4 @@
-package microservices.book.testutils;
+package microservices.book.testutils.beans;
 
 /**
  * @author moises.macero

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Profile("test")
 @Service
-public class AdminServiceImpl implements AdminService {
+class AdminServiceImpl implements AdminService {
 
     private BadgeCardRepository badgeCardRepository;
     private ScoreCardRepository scoreCardRepository;
