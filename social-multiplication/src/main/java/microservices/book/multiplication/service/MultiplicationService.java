@@ -8,9 +8,10 @@ import java.util.List;
 public interface MultiplicationService {
 
     /**
-     * Generates a random {@link Multiplication} object.
+     * Creates a Multiplication object with two randomly-generated factors
+     * between 11 and 99.
      *
-     * @return a multiplication of randomly generated numbers
+     * @return a Multiplication object with random factors
      */
     Multiplication createRandomMultiplication();
 
@@ -27,5 +28,13 @@ public interface MultiplicationService {
      * @return a list of {@link MultiplicationResultAttempt} objects, being the past attempts of the user.
      */
     List<MultiplicationResultAttempt> getStatsForUser(final String userAlias);
+
+    /**
+     * Gets an attempt by its id
+     *
+     * @param resultId the identifier of the attempt
+     * @return the {@link MultiplicationResultAttempt} object matching the id, otherwise null.
+     */
+    MultiplicationResultAttempt getResultById(final Long resultId);
 
 }

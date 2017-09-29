@@ -30,14 +30,16 @@ zuul:
       serviceId: gamification
       strip-prefix: false
 
+endpoints:
+  routes:
+    sensitive: false
+  trace:
+    sensitive: false
+
 eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
-
-endpoints:
-  routes:
-    sensitive: false
 
 
 ---

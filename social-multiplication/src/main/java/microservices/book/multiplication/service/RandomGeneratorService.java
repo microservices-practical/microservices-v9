@@ -3,8 +3,7 @@ package microservices.book.multiplication.service;
 public interface RandomGeneratorService {
 
     /**
-     * @return a random number that will be used as a factor
-     *         of a mid-complexity operation
+     * @return a randomly-generated factor. It's always a number between 11 and 99.
      */
     int generateRandomFactor();
 

@@ -1,7 +1,7 @@
 package microservices.book.gamification.domain;
 
 /**
- * @author moises.macero
+ * Enumeration with the different types of Badges that a user can win.
  */
 public enum Badge {
 
@@ -12,6 +12,7 @@ public enum Badge {
 
     // Other badges won for different conditions
     FIRST_ATTEMPT,
-    FIRST_WON
+    FIRST_WON,
+    LUCKY_NUMBER
 
 }

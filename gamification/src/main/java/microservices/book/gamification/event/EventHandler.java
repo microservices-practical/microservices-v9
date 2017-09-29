@@ -7,7 +7,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author moises.macero
+ * This class receives the events and triggers the associated
+ * business logic.
  */
 @Slf4j
 @Component

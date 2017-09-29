@@ -33,7 +33,7 @@ public final class MultiplicationResultAttempt {
 
     private final boolean correct;
 
-    // Empty constructor for JSON (de)serialization
+    // Empty constructor for JSON/JPA
     MultiplicationResultAttempt() {
         user = null;
         multiplication = null;

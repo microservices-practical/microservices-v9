@@ -11,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * @author moises.macero
+ * This class represents the Score linked to an attempt in the game,
+ * with an associated user and the timestamp in which the score
+ * is registered.
  */
 @RequiredArgsConstructor
 @Getter
@@ -40,7 +42,7 @@ public final class ScoreCard {
     @Column(name = "SCORE")
     private final int score;
 
-    // Empty constructor for JSON and JPA (de)serialization
+    // Empty constructor for JSON / JPA
     public ScoreCard() {
         this(null, null, null, 0, 0);
     }

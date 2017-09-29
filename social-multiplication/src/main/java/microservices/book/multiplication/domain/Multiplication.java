@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * This represents a Multiplication (a * b).
+ * This class represents a Multiplication (a * b).
  */
 @RequiredArgsConstructor
 @Getter
@@ -29,7 +29,7 @@ public final class Multiplication {
     private final int factorA;
     private final int factorB;
 
-    // Empty constructor for JSON (de)serialization
+    // Empty constructor for JSON/JPA
     Multiplication() {
         this(0, 0);
     }

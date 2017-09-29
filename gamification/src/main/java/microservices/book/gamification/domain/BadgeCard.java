@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * @author moises.macero
+ * This class links a Badge to a User. Contains also a timestamp with the moment in which the user got it.
  */
 @RequiredArgsConstructor
 @Getter
@@ -29,7 +29,7 @@ public final class BadgeCard {
     private final long badgeTimestamp;
     private final Badge badge;
 
-    // Empty constructor for JSON (de)serialization
+    // Empty constructor for JSON / JPA
     public BadgeCard() {
         this(null, null, 0, null);
     }

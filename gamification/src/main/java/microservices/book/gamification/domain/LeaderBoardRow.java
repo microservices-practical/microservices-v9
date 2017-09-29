@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author moises.macero
+ * Represents a line in our Leaderboard: it links a user to a total score.
  */
 @RequiredArgsConstructor
 @Getter
@@ -17,7 +17,7 @@ public final class LeaderBoardRow {
     private final Long userId;
     private final Long totalScore;
 
-    // Empty constructor for JSON (de)serialization
+    // Empty constructor for JSON / JPA
     public LeaderBoardRow() {
         this(0L, 0L);
     }

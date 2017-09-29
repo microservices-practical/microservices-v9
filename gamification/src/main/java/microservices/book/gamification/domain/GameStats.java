@@ -25,7 +25,7 @@ public final class GameStats {
     private final int score;
     private final List<Badge> badges;
 
-    // Empty constructor for JSON (de)serialization
+    // Empty constructor for JSON / JPA
     public GameStats() {
         this.userId = 0L;
         this.score = 0;

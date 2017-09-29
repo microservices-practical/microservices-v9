@@ -3,6 +3,7 @@ package microservices.book.gamification.controller;
 
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.service.GameService;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 
 /**

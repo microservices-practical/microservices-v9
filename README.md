@@ -1,7 +1,6 @@
 # Microservices - The Practical Way - v9
 
-This project contains the version 9 of the application that is developed under the scope of the book Microservices - The Practical Way. 
-You can get a copy of the book on [Leanpub](https://leanpub.com/microservices-thepracticalway).
+This project contains the version 9 of the application that is developed under the scope of the book *Learn Microservices with Spring Boot*. You can get a copy of the book on [Apress](http://www.apress.com/gp/book/9781484231647).
 
 ## Idea
 
@@ -22,7 +21,7 @@ The repository contains six folders, one for each component of the system:
 
 ## How to execute the application
 
-Since in this version we don't have yet scripts to do it, we need to run the applications manually. These are the instructions:
+These are the instructions:
 
 * **UI**. Download and install [Jetty](http://www.eclipse.org/jetty/download.html). From the command line, execute `java -jar [JETTY_HOME]/jetty-[VERSION]/start.jar` (replace the values between brackets accordingly). You also need Java.
 * **RabbitMQ**. Download and install [RabbitMQ](https://www.rabbitmq.com/download.html). We use it as Event bus. When you have installed it, you need to run the RabbitMQ server (as a service or as a process, whatever you prefer).
@@ -32,4 +31,4 @@ Since in this version we don't have yet scripts to do it, we need to run the app
 
 ## Do you want to know more?
 
-If you want more details about the different application parts and how to get there from scratch, you can buy the book if you don't have it yet: [Microservices - The Practical Way](https://leanpub.com/microservices-thepracticalway)
+If you want more details about the different application parts and how to get there from scratch, you can buy the book on [Apress](http://www.apress.com/gp/book/9781484231647).

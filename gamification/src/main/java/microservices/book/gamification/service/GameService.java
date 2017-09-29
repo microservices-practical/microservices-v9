@@ -5,8 +5,6 @@ import microservices.book.gamification.domain.ScoreCard;
 
 /**
  * This service includes the main logic for gamifying the system.
- *
- * @author moises.macero
  */
 public interface GameService {
 
