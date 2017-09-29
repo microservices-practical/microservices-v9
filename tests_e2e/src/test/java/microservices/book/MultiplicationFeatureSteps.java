@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class MultiplicationFeatureSteps {
 
-
     private MultiplicationApplication app;
     private AttemptResponse lastAttemptResponse;
     private Stats lastStatsResponse;
@@ -32,10 +31,16 @@ public class MultiplicationFeatureSteps {
     }
 
     @Given("^the user ([^\\s]+) sends (\\d+) ([^\\s]+) attempts")
-    public void the_user_sends_attempts(final String userAlias, final int attempts, final String rightOrWrong) throws Throwable {
+    public void the_user_sends_attempts(final String userAlias,
+                                        final int attempts,
+                                        final String rightOrWrong)
+                                                    throws Throwable {
         int attemptsSent = IntStream.range(0, attempts)
-                .mapToObj(i -> app.sendAttempt(userAlias, 10, 10, "right".equals(rightOrWrong) ? 100 : 258))
-                .peek(response -> lastAttemptResponse = response) // store last attempt for later use
+                .mapToObj(i -> app.sendAttempt(userAlias, 10, 10,
+                                                "right".equals(rightOrWrong) ?
+                                                        100 : 258))
+                // store last attempt for later use
+                .peek(response -> lastAttemptResponse = response)
                 .mapToInt(response -> response.isCorrect() ? 1 : 0)
                 .sum();
         assertThat(attemptsSent).isEqualTo("right".equals(rightOrWrong) ? attempts : 0)
@@ -43,14 +48,17 @@ public class MultiplicationFeatureSteps {
     }
 
     @Then("^the user gets a response indicating the attempt is ([^\\s]+)$")
-    public void the_user_gets_a_response_indicating_the_attempt_is(final String rightOrWrong) throws Throwable {
+    public void the_user_gets_a_response_indicating_the_attempt_is(
+            final String rightOrWrong) throws Throwable {
         assertThat(lastAttemptResponse.isCorrect())
                 .isEqualTo("right".equals(rightOrWrong))
-                .withFailMessage("Expecting a response with a " + rightOrWrong + " attempt");
+                .withFailMessage("Expecting a response with a "
+                        + rightOrWrong + " attempt");
     }
 
     @Then("^the user gets (\\d+) points for the attempt$")
-    public void the_user_gets_points_for_the_attempt(final int points) throws Throwable {
+    public void the_user_gets_points_for_the_attempt(
+            final int points) throws Throwable {
         long attemptId = lastAttemptResponse.getId();
         Thread.currentThread().sleep(2000);
         int score = app.getScoreForAttempt(attemptId).getScore();
@@ -58,7 +66,8 @@ public class MultiplicationFeatureSteps {
     }
 
     @Then("^the user gets the ([^\\s]+) badge$")
-    public void the_user_gets_the_type_badge(final String badgeType) throws Throwable {
+    public void the_user_gets_the_type_badge(
+            final String badgeType) throws Throwable {
         long userId = lastAttemptResponse.getUser().getId();
         Thread.currentThread().sleep(200);
         lastStatsResponse = app.getStatsForUser(userId);
