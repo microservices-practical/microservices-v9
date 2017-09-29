@@ -1,4 +1,3 @@
-
 package microservices.book.gamification.controller;
 
 import microservices.book.gamification.domain.ScoreCard;
@@ -22,7 +21,8 @@ class ScoreController {
     }
 
     @GetMapping("/{attemptId}")
-    public ScoreCard getScoreForAttempt(@PathVariable("attemptId") final Long attemptId) {
+    public ScoreCard getScoreForAttempt(
+            @PathVariable("attemptId") final Long attemptId) {
         return gameService.getScoreForAttempt(attemptId);
     }
 }
