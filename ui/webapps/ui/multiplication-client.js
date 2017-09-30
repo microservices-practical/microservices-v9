@@ -13,13 +13,13 @@ function updateMultiplication() {
     });
 }
 
-function updateStats(alias) {
+function updateResults(alias) {
     $.ajax({
         url: SERVER_URL + "/results?alias=" + alias,
     }).then(function(data) {
-        $('#stats-body').empty();
+        $('#results-body').empty();
         data.forEach(function(row) {
-            $('#stats-body').append('<tr><td>' + row.id + '</td>' +
+            $('#results-body').append('<tr><td>' + row.id + '</td>' +
                 '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
                 '<td>' + row.resultAttempt + '</td>' +
                 '<td>' + (row.correct === true ? 'YES' : 'NO') + '</td></tr>');
@@ -46,6 +46,9 @@ $(document).ready(function() {
         // Compose the data in the format that the API is expecting
         var data = { user: { alias: userAlias}, multiplication: {factorA: a, factorB: b}, resultAttempt: attempt};
 
+        // Stores the userId returned by the server
+        var userId;
+
         // Send the data using post
         $.ajax({
             url: SERVER_URL + '/results',
@@ -55,6 +58,7 @@ $(document).ready(function() {
             dataType: "json",
             async: false,
             success: function(result){
+                userId = result.user.id;
                 if(result.correct) {
                     $('.result-message').empty()
                         .append("<p class='bg-success text-center'>The result is correct! Congratulations!</p>");
@@ -67,6 +71,10 @@ $(document).ready(function() {
 
         updateMultiplication();
 
-        updateStats(userAlias);
+        setTimeout(function(){
+            updateResults(userAlias);
+            updateStats(userId);
+            updateLeaderBoard();
+        }, 300);
     });
 });

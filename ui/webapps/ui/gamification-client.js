@@ -12,6 +12,16 @@ function updateLeaderBoard() {
     });
 }
 
+function updateStats(userId) {
+    $.ajax({
+        url: SERVER_URL + "/stats?userId=" + userId
+    }).then(function(data) {
+        $('#stats-div').show();
+        $('#stats-score').empty().append(data.score);
+        $('#stats-badges').empty().append(data.badges);
+    });
+}
+
 $(document).ready(function() {
 
     updateLeaderBoard();
