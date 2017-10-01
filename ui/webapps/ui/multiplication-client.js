@@ -14,17 +14,23 @@ function updateMultiplication() {
 }
 
 function updateResults(alias) {
+    var userId = -1;
     $.ajax({
         url: SERVER_URL + "/results?alias=" + alias,
-    }).then(function(data) {
-        $('#results-body').empty();
-        data.forEach(function(row) {
-            $('#results-body').append('<tr><td>' + row.id + '</td>' +
-                '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
-                '<td>' + row.resultAttempt + '</td>' +
-                '<td>' + (row.correct === true ? 'YES' : 'NO') + '</td></tr>');
-        });
+        async: false,
+        success: function(data) {
+            $('#results-div').show();
+            $('#results-body').empty();
+            data.forEach(function(row) {
+                $('#results-body').append('<tr><td>' + row.id + '</td>' +
+                    '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
+                    '<td>' + row.resultAttempt + '</td>' +
+                    '<td>' + (row.correct === true ? 'YES' : 'NO') + '</td></tr>');
+            });
+            userId = data[0].user.id;
+        }
     });
+    return userId;
 }
 
 $(document).ready(function() {
@@ -46,9 +52,6 @@ $(document).ready(function() {
         // Compose the data in the format that the API is expecting
         var data = { user: { alias: userAlias}, multiplication: {factorA: a, factorB: b}, resultAttempt: attempt};
 
-        // Stores the userId returned by the server
-        var userId;
-
         // Send the data using post
         $.ajax({
             url: SERVER_URL + '/results',
@@ -58,7 +61,6 @@ $(document).ready(function() {
             dataType: "json",
             async: false,
             success: function(result){
-                userId = result.user.id;
                 if(result.correct) {
                     $('.result-message').empty()
                         .append("<p class='bg-success text-center'>The result is correct! Congratulations!</p>");
@@ -72,7 +74,7 @@ $(document).ready(function() {
         updateMultiplication();
 
         setTimeout(function(){
-            updateResults(userAlias);
+            var userId = updateResults(userAlias);
             updateStats(userId);
             updateLeaderBoard();
         }, 300);
